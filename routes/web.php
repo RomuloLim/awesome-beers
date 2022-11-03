@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,5 +28,10 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function (){
+    Route::get('/beers', [BeerController::class, 'index'])->name('beers.index');
+});
+
 
 require __DIR__.'/auth.php';
