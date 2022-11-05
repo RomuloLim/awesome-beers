@@ -29,8 +29,12 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware(['auth'])->group(function (){
-    Route::get('/beers', [BeerController::class, 'index'])->name('beers.index');
+Route::group([
+    'prefix' => 'beers'
+], function (){
+    Route::get('/', [BeerController::class, 'index'])->name('beers.index');
+    Route::get('/export', [BeerController::class, 'export'])->name('beers.export');
+
 });
 
 

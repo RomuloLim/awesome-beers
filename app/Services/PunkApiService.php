@@ -6,8 +6,18 @@ use Illuminate\Support\Facades\Http;
 
 class PunkApiService
 {
-    public function getBeers()
+    public function getBeers(
+        ?string $beer_name = null,
+        ?string $food = null,
+        ?string $malt = null,
+        ?int $ibu_gt = null
+    )
     {
-       return Http::get('https://api.punkapi.com/v2/beers');
+        $params = array_filter(get_defined_vars());
+
+        return Http::punkApi()
+           ->get('beers', $params)
+           ->throw()
+           ->json();
     }
 }

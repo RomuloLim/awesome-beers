@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BeerRequest;
 use App\Services\PunkApiService;
-use Illuminate\Http\Request;
 
 class BeerController extends Controller
 {
-    public function index()
+    public function index(BeerRequest $request, PunkApiService $service)
     {
-        $service = new PunkApiService();
-        return $service->getBeers()->json();
+        return $service->getBeers(...$request->validated());
+    }
+
+    public function export()
+    {
+        return 'bomdia';
     }
 }
