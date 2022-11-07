@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Http::macro('punkApi', function (){
+            return Http::withHeaders([
+                'Accept' => 'application/json'
+            ])->baseUrl(config('punkapi.url'))
+            ->retry(3, 100);
+        });
     }
 }
