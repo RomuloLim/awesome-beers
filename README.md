@@ -7,6 +7,19 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Pre-requisites
+ 
+ - Docker
+
+## Instalation
+🖥️ Clone the repository
+
+    git clone  https://github.com/RomuloLim/awesome-beers.git
+
+❗For better benefit, create an alias to Laravel Sail [https://laravel.com/docs/9.x/sail#configuring-a-shell-alias](https://laravel.com/docs/9.x/sail#configuring-a-shell-alias)
+
+    git clone  https://github.com/RomuloLim/awesome-beers.git
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
