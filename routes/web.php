@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BeerController;
+use App\Http\Controllers\ExportController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,6 +37,7 @@ Route::group([
     Route::get('/', [BeerController::class, 'index'])->name('beers.index');
 
     Route::get('/export', [BeerController::class, 'export'])->name('beers.export');
+    Route::get('/export/history', [ExportController::class, 'index'])->name('beers.export.history');
 });
 
 

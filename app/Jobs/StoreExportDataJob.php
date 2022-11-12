@@ -2,12 +2,18 @@
 
 namespace App\Jobs;
 
+use App\Mail\ExportEmail;
+use App\Models\Export;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StoreExportDataJob implements ShouldQueue
 {
@@ -18,10 +24,10 @@ class StoreExportDataJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
-    {
-        //
-    }
+    public function __construct(
+        protected Authenticatable $user,
+        protected string $fileName
+    ){}
 
     /**
      * Execute the job.
@@ -30,6 +36,8 @@ class StoreExportDataJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        $this->user->exports()->create([
+            'file_name' => $this->fileName,
+        ]);
     }
 }

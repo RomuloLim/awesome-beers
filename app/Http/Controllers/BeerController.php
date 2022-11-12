@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Exports\BeerExport;
 use App\Http\Requests\BeerRequest;
+use App\Jobs\ExportJob;
+use App\Jobs\SendExportEmailJob;
+use App\Jobs\StoreExportDataJob;
 use App\Mail\ExportEmail;
 use App\Models\Export;
 use App\Services\PunkApiService;
@@ -26,26 +29,12 @@ class BeerController extends Controller
 
     public function export(BeerRequest $request)
     {
-        $beers = $this->service->getBeers(...$request->validated());
-
-        $filteredBeers = collect($beers)->map(function($item, $key){
-            return collect($item)->only(['name', 'tagline', 'first_brewed', 'description']);
-        })->toArray();
-
         $fileName = 'exportedBeers_'.Carbon::now()->toISOString().'.xlsx';
 
-        Excel::store(
-            new BeerExport($filteredBeers),
-            $fileName,
-            's3');
-
-        Mail::to('test@gmail.com')
-                ->send(new ExportEmail($fileName));
-
-        Export::create([
-            'file_name' => $fileName,
-            'user_id' => Auth::user()->id
-        ]);
+        ExportJob::withChain([
+            new SendExportEmailJob(Auth::user(), $fileName),
+            new StoreExportDataJob(Auth::user(), $fileName),
+        ])->dispatch($request->validated(), $fileName);
 
         return response()->json('relatório criado');
     }
