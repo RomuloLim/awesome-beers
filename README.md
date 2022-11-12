@@ -1,25 +1,25 @@
-<h1 align="center">Working here! ⚠️🛠️</h1>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![romulo-lima Awesome Beers](https://preview.dragon-code.pro/romulo-lima/Awesome-Beers.svg?brand=laravel)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h3 align="center">Working here! ⚠️🛠️</h3>
 
 ## Pre-requisites
  
  - Docker
 
-## Instalation
+## Installation
 🖥️ Clone the repository
 
     git clone  https://github.com/RomuloLim/awesome-beers.git
 
-❗For better benefit, create an alias to Laravel Sail [https://laravel.com/docs/9.x/sail#configuring-a-shell-alias](https://laravel.com/docs/9.x/sail#configuring-a-shell-alias)
+❗For better benefit, configure a shell Alias to Laravel Sail. You can see documentation [here](https://laravel.com/docs/9.x/sail#configuring-a-shell-alias)
 
-    git clone  https://github.com/RomuloLim/awesome-beers.git
+    alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
+(If not, you can use `./vendor/bin/sail [command]` instead of just `sail [command]`)
+
+⚙️ On your prompt, run:
+
+    sail up -d
 
 ## About Laravel
 
