@@ -30,11 +30,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::group([
-    'prefix' => 'beers'
+    'prefix' => 'beers',
+    'middleware' => 'auth'
 ], function (){
     Route::get('/', [BeerController::class, 'index'])->name('beers.index');
-    Route::get('/export', [BeerController::class, 'export'])->name('beers.export');
 
+    Route::get('/export', [BeerController::class, 'export'])->name('beers.export');
 });
 
 
