@@ -1,7 +1,4 @@
 ![romulo-lima Awesome Beers](https://preview.dragon-code.pro/romulo-lima/Awesome-Beers.svg?brand=laravel)
-
-<h3 align="center">Working here! ⚠️🛠️</h3>
-
 ## Pre-requisites
  
  - Docker
